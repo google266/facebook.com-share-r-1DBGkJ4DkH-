@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meta Sign Up</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f2f3f5;
+    display:flex;
+    justify-content:center;
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:500px;
+}
+
+.back{
+    font-size:40px;
+    color:#606770;
+    margin-bottom:20px;
+    cursor:pointer;
+}
+
+.meta-logo{
+    font-size:28px;
+    color:#0064e0;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+h1{
+    font-size:22px;
+    margin-bottom:10px;
+    color:#050505;
+}
+
+.desc{
+    color:#1c1e21;
+    font-size:15px;
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    margin-top:18px;
+    margin-bottom:8px;
+    font-size:16px;
+    font-weight:600;
+}
+
+.row{
+    display:flex;
+    gap:12px;
+}
+
+input,select{
+    width:100%;
+    height:58px;
+    border:1px solid #ccd0d5;
+    border-radius:16px;
+    padding:0 16px;
+    font-size:18px;
+    background:#fff;
+    outline:none;
+}
+
+.error{
+    border:1.5px solid #ff3040;
+    color:#ff3040;
+}
+
+.info{
+    font-size:14px;
+    margin-top:10px;
+    line-height:1.5;
+}
+
+.info a{
+    color:#1877f2;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.btn{
+    width:100%;
+    height:58px;
+    border:none;
+    border-radius:30px;
+    background:#1877f2;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    margin-top:25px;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background:#166fe5;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="back">‹</div>
+
+<div class="meta-logo">∞ Meta</div>
+
+<h1>
+Get started on Facebook with a Meta account
+</h1>
+
+<p class="desc">
+A Meta Account lets you access multiple Meta technologies,
+such as Facebook, easily and securely.
+</p>
+
+<label>Name</label>
+
+<div class="row">
+    <input type="text" placeholder="First name">
+    <input type="text" placeholder="Surname">
+</div>
+
+<label>Date of birth ⓘ</label>
+
+<div class="row">
+    <select>
+        <option>Day</option>
+    </select>
+
+    <select>
+        <option>Month</option>
+    </select>
+
+    <select>
+        <option>Year</option>
+    </select>
+</div>
+
+<label>Gender ⓘ</label>
+
+<select>
+    <option>Select your gender</option>
+    <option>Male</option>
+    <option>Female</option>
+    <option>Other</option>
+</select>
+
+<label>Mobile number or email address</label>
+
+<input class="error"
+type="text"
+placeholder="Mobile number or email address">
+
+<p class="info">
+You may receive notifications from us.
+<a href="#">Learn why we ask for your contact information</a>
+</p>
+
+<label>Password</label>
+
+<input class="error"
+type="password"
+placeholder="Password">
+
+<button class="btn">
+Create Account
+</button>
+
+</div>
+
+</body>
+</html>

